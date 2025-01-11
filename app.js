@@ -1,12 +1,23 @@
+import cookieParser from 'cookie-parser';
 import createError from 'http-errors';
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from "url";
-import cookieParser from 'cookie-parser';
+
+//to get cross-platform absolute valid paths strings for view engine setup:
+import { fileURLToPath } from "node:url";
+import path from 'node:path';
+
+//middlewares no longer on the Express object (moving from Express 3 to Express 4):
+import bodyParser from "body-parser";
+//errorHandler
+import favicon from "serve-favicon";
 import logger from 'morgan';
+import methodOverride from "method-override";
+import multer from "multer";
+import session from "express-session";
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
+import errorHandler from "errorhandler"; //load this after loading the app routes! (is this only for Express 3?)
 
 const app = express();
 
